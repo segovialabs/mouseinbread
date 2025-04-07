@@ -1,9 +1,30 @@
 body {
   font-family: Arial;
   text-align: center;
-  background: #fff5e6;
   margin: 0;
   padding: 0;
+  /* New background properties */
+  background-image: url('images/backgrounds/bg-main.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; /* Creates parallax effect */
+  min-height: 100vh;
+  color: white; /* Light text for dark backgrounds */
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.8); /* Improves readability */
+}
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.5); /* Black with 50% opacity */
+  z-index: -1;
+}
+header {
+  position: relative;  /* Needed for logo positioning */
+  height: 100px;       /* Reserves space at the top */
 }
 .container {
   max-width: 800px;
@@ -18,10 +39,31 @@ body {
   font-weight: bold;
 }
 .logo {
-  width: 150px;          /* Fixed width */
-  height: 150px;         /* Must match width for perfect circle */
-  object-fit: cover;     /* Ensures image fills the circle */
-  border-radius: 50%;    /* Makes it round */
-  display: block;        /* Centers the logo */
-  margin: 20px auto;     /* Adds space and centers horizontally */
+  width: 80px;           /* Smaller for corner placement */
+  height: 80px;
+  object-fit: cover;
+  border-radius: 50%;
+  position: absolute;    /* Allows free positioning */
+  top: 20px;             /* Distance from top */
+  left: 20px;            /* Distance from left */
+  z-index: 100;          /* Ensures it stays above background */
+  border: 2px solid #ff6b6b; /* Optional: Adds pink border */
+}
+.logo:hover {
+  transform: rotate(360deg);
+  transition: transform 0.8s ease;
+  box-shadow: 0 0 15px #ff6b6b; /* Pink glow */
+}
+.btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px #ff6b6b;
+  transition: all 0.3s ease;
+}
+@media (max-width: 600px) {
+  .logo {
+    width: 60px;
+    height: 60px;
+    top: 10px;
+    left: 10px;
+  }
 }
