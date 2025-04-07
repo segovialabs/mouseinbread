@@ -1,69 +1,177 @@
+/* ===== FONT FACE ===== */
+@font-face {
+  font-family: 'FBSBLTC';
+  src: 
+    url('./fonts/fbsbltc.woff2') format('woff2'),
+    url('./fonts/fbsbltc.woff') format('woff'),
+    url('./fonts/fbsbltc.ttf') format('truetype');
+  font-display: swap;
+}
+
+/* ===== BASE STYLES ===== */
 body {
-  font-family: Arial;
+  font-family: 'Arial', sans-serif;
   text-align: center;
   margin: 0;
   padding: 0;
-  /* New background properties */
-  background-image: url('images/backgrounds/bg-main.jpg');
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed; /* Creates parallax effect */
+  background: url('./images/backgrounds/bg-main.jpg') center/cover no-repeat fixed;
   min-height: 100vh;
-  color: white; /* Light text for dark backgrounds */
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.8); /* Improves readability */
+  color: #fff;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+  line-height: 1.6;
 }
-body::before {
-  content: "";
+
+/* ===== HEADER & TITLE ===== */
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0;
+  position: relative;
+}
+
+.title {
+  font-family: 'FBSBLTC', 'Impact', 'Arial Black', sans-serif;
+  font-size: 6rem;
+  color: #ff6b6b;
+  margin: 0;
+  padding: 20px 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  animation: pulse 2s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+/* ===== LOGO ===== */
+.logo {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 50%;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  border: 2px solid #ff6b6b;
+  transition: transform 0.8s ease, box-shadow 0.3s ease;
+}
+
+.logo:hover {
+  transform: rotate(360deg);
+  box-shadow: 0 0 15px #ff6b6b;
+}
+
+/* ===== INFO SECTION ===== */
+.info-section {
   position: fixed;
-  top: 0;
+  bottom: 60px;
   left: 0;
   right: 0;
-  bottom: 0;
-  background: rgba(0,0,0,0.5); /* Black with 50% opacity */
-  z-index: -1;
+  text-align: center;
+  z-index: 10;
 }
-header {
-  position: relative;  /* Needed for logo positioning */
-  height: 100px;       /* Reserves space at the top */
+
+.highlight {
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
 }
-.container {
-  max-width: 800px;
-  margin: 100px auto;
+
+.chain-list {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
 }
+
+/* ===== BUTTON STYLES ===== */
+.button-group {
+  display: inline-flex;
+  gap: 15px;
+  padding: 12px 0;
+}
+
 .btn {
-  background: #ff6b6b;
+  background: #000;
   color: white;
   padding: 12px 24px;
   border-radius: 50px;
   text-decoration: none;
   font-weight: bold;
-}
-.logo {
-  width: 80px;           /* Smaller for corner placement */
-  height: 80px;
-  object-fit: cover;
-  border-radius: 50%;
-  position: absolute;    /* Allows free positioning */
-  top: 20px;             /* Distance from top */
-  left: 20px;            /* Distance from left */
-  z-index: 100;          /* Ensures it stays above background */
-  border: 2px solid #ff6b6b; /* Optional: Adds pink border */
-}
-.logo:hover {
-  transform: rotate(360deg);
-  transition: transform 0.8s ease;
-  box-shadow: 0 0 15px #ff6b6b; /* Pink glow */
-}
-.btn:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 15px #ff6b6b;
+  display: inline-flex;
+  align-items: center;
   transition: all 0.3s ease;
 }
+
+.btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(0,0,0,0.7);
+  background: #222;
+}
+
+.fab {
+  margin-right: 8px;
+}
+
+/* ===== FOOTER ===== */
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  padding: 15px 0;
+  z-index: 5;
+  color: #fff;
+}
+
+/* ===== MAIN CONTENT ===== */
+.container {
+  max-width: 800px;
+  margin: 100px auto;
+  padding: 0 20px;
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes floatUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* ===== MOBILE RESPONSIVENESS ===== */
 @media (max-width: 600px) {
+  .title {
+    font-size: 4rem;
+  }
+  
   .logo {
     width: 60px;
     height: 60px;
     top: 10px;
     left: 10px;
+  }
+
+  .container {
+    margin: 80px auto;
+  }
+
+  .info-section {
+    bottom: 40px;
+    padding: 0 10px;
+  }
+  
+  .highlight {
+    font-size: 1.1rem;
+  }
+  
+  .chain-list {
+    font-size: 1rem;
+    margin-bottom: 15px;
+  }
+  
+  .button-group {
+    flex-direction: column;
+    width: 100%;
   }
 }
